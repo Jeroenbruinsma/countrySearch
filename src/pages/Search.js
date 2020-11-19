@@ -1,11 +1,14 @@
 import Axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
+import { useHistory, useParams } from 'react-router-dom'
 import Country from '../components/Country'
 
 export default function Search() {
     const [searchText, set_searchText] =  useState("")
     const [searchResults, set_searchResults] =  useState([])
+    const history =  useHistory()
+    const {text} = useParams()
     const [error, set_error] =  useState(false)
 
     const search = async (topic) => {
@@ -23,9 +26,17 @@ export default function Search() {
         }
     }
 
+    useEffect(()=> {
+        console.log("hello from useEffect: params:", text)
+        if(text){
+            search(text)
+        }
+    } ,[text])
+
     const submitHandler = (event) => {
+        console.log("hello from submit fn")
         event.preventDefault()
-        search(searchText)
+        history.push(`/search/${searchText}`)
     }
     const onChangeHandler = (event) => {
         set_searchText(event.target.value)
@@ -41,7 +52,6 @@ export default function Search() {
             { error ? <p>not found</p> : null}
 
             {searchResults.map( result => {
-                console.log("result", result)
                 return  (
                      <Country data={result} />
                 )

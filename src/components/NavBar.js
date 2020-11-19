@@ -12,7 +12,8 @@ export default function NavBar() {
             <Nav.Link href="/coffee">Coffee</Nav.Link>
             <Nav.Link href="/coffee">Coffee</Nav.Link>
             <Nav.Link href="/countries">Countries</Nav.Link>
-            <Nav.Link href="/menu">Manu</Nav.Link>
+            <Nav.Link href="/menu">Menu</Nav.Link>
+            <Nav.Link href="/search">Search</Nav.Link>
           </Nav>
           <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
